@@ -1,5 +1,5 @@
 class PListError(Exception):
-	pass
+    pass
 
 class CFFormatError(Exception):
-	pass
+    pass
