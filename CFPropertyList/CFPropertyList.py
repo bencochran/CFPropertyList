@@ -239,9 +239,12 @@ class CFPropertyList(object):
 		# The problem is: we get the length of the string IN CHARACTERS;
 		# since a char in UTF-16 can be 16 or 32 bit long, we don't really know
 		# how long the string is in bytes
-		buff = unicode(fp.read(2*length), 'utf-8')
-	
-		return CFString(buff.encode('utf-16be'))
+		
+		buff = fp.read(2*length)
+		buff = unicode(buff, 'utf-16be')
+		buff = buff.encode('utf-8')
+			
+		return CFString(buff)
 
 	def read_binary_array(self, fname,fp,length):
 		'''
