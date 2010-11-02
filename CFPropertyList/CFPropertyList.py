@@ -220,7 +220,7 @@ class CFPropertyList(object):
 		buff = ''
 		if length > 0:
 			buff = fp.read(length)
-		return CFData(buff, CFData.DATA_ROW)
+		return CFData(buff, CFData.DATA_RAW)
 
 	def read_binary_string(self, fname,fp,length):
 		'''

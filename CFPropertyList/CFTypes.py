@@ -38,7 +38,7 @@ class CFData(CFType):
 		if type == None:
 			type = self.__class__.DATA_RAW
 		self.type = type
-		super(CFDate, self).__init__(value)
+		super(CFData, self).__init__(value)
 
 class CFString(CFType):
 	pass
