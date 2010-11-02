@@ -294,7 +294,21 @@ class CFPropertyList(object):
 		return CFDictionary(dic)
 
 
-
+def native_types(obj):
+	if obj == None: return None
+	
+	if isinstance(obj, CFDate) or isinstance(obj, CFString) or isinstance(obj, CFInteger) or isinstance(obj, CFReal) or isinstance(obj, CFBoolean):
+		return obj.value
+	elif isinstance(obj, CFData):
+		return obj.decoded_value
+	elif isinstance(obj, CFArray):
+		return [native_types(v) for v in obj.value]
+	elif isinstance(obj, CFDictionary):
+		hsh = {}
+		for (k, v) in obj.value.items():
+			hsh[k.value] = native_types(v)
+		return hsh
+		
 
 def unpack_helper(fmt, data):
 	size = calcsize(fmt)

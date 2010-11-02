@@ -1,5 +1,3 @@
-from CFPropertyList import CFPropertyList
-from CFPListErrors import *
-from CFTypes import *
+from CFPropertyList import CFPropertyList, native_types
 
-__all__ = ['CFPropertyList', 'PListError']
+__all__ = ['CFPropertyList', 'native_types']
