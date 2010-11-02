@@ -1,3 +1,5 @@
+from base64 import b64encode, b64decode
+
 class CFType(object):
 	def __init__(self, value):
 		self.value = value
@@ -35,10 +37,14 @@ class CFData(CFType):
 	DATA_RAW = 1
 	
 	def __init__(self, value, type=None):
-		if type == None:
-			type = self.__class__.DATA_RAW
-		self.type = type
 		super(CFData, self).__init__(value)
+		if type == self.__class__.DATA_BASE64 or type == None:
+			self.encoded_value = self.value
+			self.decoded_value = b64decode(self.value)
+		else:
+			self.encoded_value = b64encode(self.value)
+			self.decoded_value = self.value
+		
 
 class CFString(CFType):
 	pass
