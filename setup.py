@@ -8,7 +8,7 @@ setup(
     description='A utility for reading and writing binary and XML property lists',
     author='Ben Cochran',
     author_email='ben.cochran@gmail.com',
-    url='http://code.bencochran.com/CFPropertyList',
+    url='http://github.com/bencochran/CFPropertyList',
     download_url='http://github.com/bencochran/CFPropertyList/downloads',
     packages=['CFPropertyList'],
     classifiers=[
