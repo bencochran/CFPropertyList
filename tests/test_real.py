@@ -1,7 +1,7 @@
 import unittest
 from reference import parsed_binary
 
-class ArrayTest(unittest.TestCase):
+class RealTest(unittest.TestCase):
     def test_read_float(self):
         self.assertEqual(1.5, parsed_binary('real_float'))
 
