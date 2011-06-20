@@ -22,11 +22,16 @@ class CFPropertyList(object):
         if format == CFPropertyListFormatBinary:
             self.read_binary(fileName)
         if format == CFPropertyListFormatAuto:
-            fp = open(fileName, 'rb')
+            opened = False
+            try:
+                fp = open(fileName, 'rb')
+                opened = True
+            except TypeError:
+                fp = fileName
             magic_number = fp.read(8)
             if magic_number == False:
                 raise IOError('Could not read %s' % fileName)
-            fp.close()
+            if opened: fp.close()
             
             filetype = magic_number[:6]
             version = magic_number[-2:]
@@ -43,7 +48,12 @@ class CFPropertyList(object):
             # self.value = plistlib.readPlist(fileName)
     
     def read_binary(self, filename):
-        fp = open(filename, 'rb')
+        opened = False
+        try:
+            fp = open(filename, 'rb')
+            opened = True
+        except TypeError:
+            fp = filename
 
         # first, we read the trailer: 32 bytes from the end
         fp.seek(-32, os.SEEK_END)
@@ -72,7 +82,7 @@ class CFPropertyList(object):
         self.object_ref_size = object_ref_size
         
         top = self.read_binary_object_at(filename, fp, top_object)
-        fp.close()
+        if opened: fp.close()
         return top
     
     def read_binary_object_at(self, filename, fp, pos):
